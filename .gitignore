@@ -7,6 +7,6 @@ venv/
 env/
 .venv/
 
-# Media directories (typically too large for git)
-audios/
-videos/
+# Media directories (typically too large for git, uncomment if you want to include them)
+# audios/
+# videos/
