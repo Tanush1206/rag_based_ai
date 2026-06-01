@@ -1,9 +1,6 @@
 # convert videos to mp3
 import os
 import subprocess
-import static_ffmpeg
-
-static_ffmpeg.add_paths()
 
 files = os.listdir("videos")
 for file in files :
