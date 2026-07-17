@@ -2,5 +2,8 @@
     "python.defaultInterpreterPath": "/opt/anaconda3/bin/python",
     "code-runner.executorMap": {
         "python": "/opt/anaconda3/bin/python -u"
-    }
+    },
+    "cSpell.words": [
+        "jsons"
+    ]
 }
