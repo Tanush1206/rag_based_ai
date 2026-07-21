@@ -1,12 +1,29 @@
 .DS_Store
 __pycache__/
 *.pyc
+*.log
 
 # Virtual environments
 venv/
 env/
 .venv/
 
-# Media directories (typically too large for git, uncomment if you want to include them)
-# audios/
-# videos/
+# Environment variables / secrets
+.env
+
+# Media directories (large files + likely copyrighted course content -
+# each user should supply their own videos rather than committing them)
+videos/
+audios/
+
+# Generated data (regenerate locally with the scripts, don't commit)
+jsons/
+embeddings.joblib
+output.json
+
+# Per-run scratch files
+prompt.txt
+response.txt
+
+# IDE
+.vscode/
