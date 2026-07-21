@@ -1,1 +1,0 @@
- (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& c:\Users\Admin\Desktop\rag_based_ai\.venv\Scripts\Activate.ps1)
