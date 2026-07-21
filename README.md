@@ -12,22 +12,22 @@ A local, fully offline retrieval-augmented question answering (RAG) pipeline bui
 
 ## Project layout
 
-| Path | Purpose |
-|---|---|
-| `videos/` | Input MP4 course videos (you provide these — see [Adding your own videos](#adding-your-own-videos)). |
-| `audios/` | MP3 files extracted from `videos/`. Generated, not committed. |
-| `jsons/` | Transcript chunks (text + timestamps) for each video. Generated, not committed. |
-| `embeddings.joblib` | Cached dataframe of transcript chunks + their embeddings. Generated, not committed. |
-| `mp4_to_mp3.py` | Converts videos in `videos/` to MP3 files in `audios/`. |
-| `mp3_to_json.py` | Transcribes each MP3 into chunked JSON using Whisper. |
-| `preprocess_json.py` | Reads every JSON in `jsons/`, builds embeddings via Ollama, saves `embeddings.joblib`. |
-| `process_incoming.py` | Takes a user question, retrieves relevant chunks, and generates an answer. |
-| `unused/stt.py` | Older, standalone transcription experiment — not part of the active pipeline. |
-| `prompt.txt` | The exact prompt sent to the LLM on the last run. Overwritten each run. |
-| `response.txt` | The model's answer from the last run. Overwritten each run. |
-| `output.json` | Intermediate/debug output from the pipeline. Overwritten each run. |
-| `requirements.txt` | Python dependencies. |
-| `.venv start.txt` | Notes/commands for activating the virtual environment. |
+| Path                  | Purpose                                                                                              |
+| --------------------- | ---------------------------------------------------------------------------------------------------- |
+| `videos/`             | Input MP4 course videos (you provide these — see [Adding your own videos](#adding-your-own-videos)). |
+| `audios/`             | MP3 files extracted from `videos/`. Generated, not committed.                                        |
+| `jsons/`              | Transcript chunks (text + timestamps) for each video. Generated, not committed.                      |
+| `embeddings.joblib`   | Cached dataframe of transcript chunks + their embeddings. Generated, not committed.                  |
+| `mp4_to_mp3.py`       | Converts videos in `videos/` to MP3 files in `audios/`.                                              |
+| `mp3_to_json.py`      | Transcribes each MP3 into chunked JSON using Whisper.                                                |
+| `preprocess_json.py`  | Reads every JSON in `jsons/`, builds embeddings via Ollama, saves `embeddings.joblib`.               |
+| `process_incoming.py` | Takes a user question, retrieves relevant chunks, and generates an answer.                           |
+| `unused/stt.py`       | Older, standalone transcription experiment — not part of the active pipeline.                        |
+| `prompt.txt`          | The exact prompt sent to the LLM on the last run. Overwritten each run.                              |
+| `response.txt`        | The model's answer from the last run. Overwritten each run.                                          |
+| `output.json`         | Intermediate/debug output from the pipeline. Overwritten each run.                                   |
+| `requirements.txt`    | Python dependencies.                                                                                 |
+| `.venv start.txt`     | Notes/commands for activating the virtual environment.                                               |
 
 ## Requirements
 
@@ -124,6 +124,7 @@ python process_incoming.py
 ```
 
 You'll be prompted to enter a question. The script will:
+
 1. Embed your question using `bge-m3`.
 2. Compare it against all stored chunk embeddings via cosine similarity.
 3. Select the top 5 most relevant chunks.
@@ -150,13 +151,14 @@ Run `preprocess_json.py` first — `process_incoming.py` assumes the embeddings 
 
 ## Notes on content & licensing
 
-- This project is built around the *Sigma Web Development* course as an example use case, but no course video, audio, or transcript content is included in this repository — only the pipeline code.
+- This project is built around the _Sigma Web Development_ course as an example use case, but no course video, audio, or transcript content is included in this repository — only the pipeline code.
 - If you plan to share this repo publicly, do not commit `videos/`, `audios/`, `jsons/`, or `embeddings.joblib`, since these would contain (or be derived from) copyrighted course material. The included `.gitignore` already excludes these.
 - Anyone using this project should supply their own video content, and should ensure they have the right to transcribe and process that content locally.
 
 ## Example output
 
 After a question is processed, you'll have:
+
 - `prompt.txt` — the exact prompt sent to the model, including the retrieved transcript chunks.
 - `response.txt` — the model's final answer, including citations back to video number/title/timestamp where applicable.
 
